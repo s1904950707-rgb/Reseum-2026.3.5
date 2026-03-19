@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人履歷 - 亞洲大學學生</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f4f4;
+    color:#333;
+    transition:0.3s;
+}
+
+header{
+    background:#2c3e50;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+    margin-top:20px;
+}
+
+.section{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2{
+    border-bottom:2px solid #3498db;
+    padding-bottom:5px;
+}
+
+ul{
+    padding-left:20px;
+}
+
+button{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2980b9;
+}
+
+/* 深色模式 */
+.dark{
+    background:#1e1e1e;
+    color:#eee;
+}
+
+.dark .section{
+    background:#2c2c2c;
+}
+
+.dark header{
+    background:#111;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="photo.jpg" alt="個人照片" class="profile-pic">
+    <h1>楊芮渼</h1>
+    <p>亞洲大學學生</p>
+    <p>學號：114018031</p>
+    <button onclick="toggleMode()">切換深色模式</button>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2>個人簡介</h2>
+<p>
+我是亞洲大學的學生，目前就讀聽力暨語言治療學系一年級，
+對語言溝通與復健領域具有興趣，希望未來能運用專業知識，
+幫助有聽力，語言與溝通，吞嚥困難方面的人提升生活品質。
+</p>
+</div>
+
+<div class="section">
+<h2>學歷</h2>
+<ul>
+<li>亞洲大學 (Asia University)</li>
+<li>高中：XXX 高中</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>技能</h2>
+<ul>
+<li>溝通與表達能力</li>
+<li>英文簡報</li>
+<li>團隊合作</li>
+<li>基礎程式設計 (HTML / JavaScript)</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>聯絡方式</h2>
+<p>Email：example@email.com</p>
+<p>電話：09xx-xxx-xxx</p>
+</div>
+
+</div>
+
+<script>
+function toggleMode(){
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
