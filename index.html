@@ -138,6 +138,12 @@
             </p>
         </div>
 
+        <audio controls>
+ 
+  <source src="mp3/兩分鐘城市清晨配樂.mp3" type="audio/mpeg">
+
+</audio>
+
         <div class="section">
             <h2>學歷</h2>
             <ul>
@@ -172,24 +178,6 @@
         }
     </script>
 
-<audio id="bgm" autoplay loop playsinline>
-  <source src="mp3/兩分鐘城市清晨配樂.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  const audio = document.getElementById("bgm");
-
-  // 嘗試直接播放
-  audio.play().catch(() => {
-    // 若被擋，快速解除靜音再播放
-    audio.muted = true;
-    audio.play();
-
-    setTimeout(() => {
-      audio.muted = false;
-    }, 100);
-  });
-</script>
 
 </body>
 </html>
