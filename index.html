@@ -6,270 +6,378 @@
     <title>個人履歷 - 楊芮渼</title>
 
     <style>
-        /* --- 基礎設定 --- */
+        /* --- 基礎與版面設定 --- */
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', Arial, sans-serif;
-            background: #e9ebee; /* 外層網頁背景色 */
+            background: #f0f2f5;
             margin: 0;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
-            transition: background-color 0.3s;
         }
 
-        /* --- 履歷主體 (雙欄彈性盒子) --- */
         .resume-wrapper {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             display: flex;
             background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
-        /* ================= 左側欄位 (米色) ================= */
+        /* ================= 左側欄位 (莫蘭迪綠) ================= */
         .left-column {
-            width: 35%;
-            background: #d5c7ad; /* 模仿圖片的米色 */
+            width: 32%;
+            background: #809f98;
+            color: white;
             display: flex;
             flex-direction: column;
-            transition: background-color 0.3s;
-        }
-
-        /* 左側照片區塊 (深藍背景) */
-        .photo-area {
-            background: #2a323f; /* 模仿圖片的深藍色 */
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
             align-items: center;
+            padding-bottom: 40px;
         }
 
-        /* 模仿圖片的六角形照片 */
+        /* 照片與名字區塊 */
+        .profile-header {
+            width: 100%;
+            background: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0 20px 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+            margin-bottom: 30px;
+        }
+
         .profile-pic {
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
             object-fit: cover;
-            /* 使用 CSS 繪製六角形 */
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            border: 6px solid #d5c7ad; /* 六角形外框 */
+            border: 6px solid #6b724b;
+            margin-bottom: 15px;
+        }
+
+        .profile-header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: normal;
+            letter-spacing: 5px;
+        }
+
+        .job-title {
+            background: #6b724b;
+            color: white;
+            padding: 5px 15px;
+            margin-top: 10px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* 左側內容區塊 */
+        .left-content {
+            width: 80%;
+        }
+
+        .left-title {
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .left-title::before, .left-title::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            margin: 0 10px;
+        }
+
+        /* 進度條設計 */
+        .skill-item {
+            margin-bottom: 15px;
+        }
+        
+        .skill-name {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            border: 1px solid white;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+
+        .progress {
+            height: 100%;
             background: white;
         }
 
-        .left-content {
-            padding: 30px 0;
+        /* 興趣小標 */
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            font-size: 14px;
+            margin-top: 10px;
         }
-
-        /* 左側內文 */
-        .left-column .section-body {
-            padding: 0 30px 20px 30px;
-            color: #2a323f;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .left-column ul {
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-
 
         /* ================= 右側欄位 (白色) ================= */
         .right-column {
-            width: 65%;
-            display: flex;
-            flex-direction: column;
+            width: 68%;
+            padding: 40px 50px;
+            box-sizing: border-box;
         }
 
-        /* 頂部深色模式按鈕列 */
-        .btn-container {
+        .contact-top {
             text-align: right;
-            padding: 10px 30px;
-            background: #2a323f;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
         }
 
-        button {
-            background: transparent;
-            color: #d5c7ad;
-            border: 1px solid #d5c7ad;
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 13px;
-            transition: 0.3s;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        button:hover {
-            background: rgba(213, 199, 173, 0.2);
+        .right-section-title {
+            position: relative;
+            text-align: center;
+            margin: 35px 0 25px 0;
+        }
+
+        .right-section-title::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #ccc;
+            z-index: 1;
+        }
+
+        .right-section-title span {
+            background: #6b724b;
             color: white;
-        }
-
-        /* 姓名與標題區塊 */
-        .header-area {
-            background: #2a323f;
-            color: white;
-            padding: 30px 40px 40px 40px;
-            border-bottom: 5px solid #d5c7ad; /* 姓名下方的米色裝飾線 */
-        }
-
-        .header-area h1 {
-            margin: 0;
-            font-size: 36px;
-            letter-spacing: 4px;
-            color: #d5c7ad; /* 名字使用米色突出 */
-            text-transform: uppercase;
-        }
-
-        .header-area p {
-            margin: 10px 0 0 0;
+            padding: 5px 20px;
+            position: relative;
+            z-index: 2;
             font-size: 16px;
-            letter-spacing: 1px;
-            opacity: 0.9;
-        }
-
-        /* 右側內文 */
-        .right-content {
-            padding: 40px;
-        }
-
-        .right-column .section-body {
-            margin-bottom: 30px;
-            color: #444;
-            line-height: 1.8;
-            font-size: 15px;
-        }
-
-        .right-column ul {
-            padding-left: 20px;
-        }
-
-
-        /* ================= 共通標題設計 (斜角標籤) ================= */
-        .section-title {
-            background: #2a323f;
-            color: white;
-            display: inline-block;
-            padding: 8px 30px 8px 20px;
-            /* 模仿圖片中右側斜角的設計 */
-            clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
-            margin-bottom: 15px;
-            font-weight: bold;
-            font-size: 18px;
             letter-spacing: 2px;
         }
 
-        /* 左側的標題需要貼齊邊緣 */
-        .left-column .section-title {
-            width: 85%;
-            padding-left: 30px;
-            margin-left: 0;
+        .section-content {
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: #444;
         }
 
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
 
-        /* ================= 深色模式支援 ================= */
-        body.dark {
-            background: #121212;
+        .timeline-time {
+            width: 30%;
+            color: #809f98;
+            font-weight: bold;
         }
-        body.dark .resume-wrapper {
-            background: #1e1e1e;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+        .timeline-desc {
+            width: 70%;
         }
-        body.dark .left-column {
-            background: #2c2c2c;
+
+        .timeline-desc h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 15px;
         }
-        body.dark .left-column .section-body {
-            color: #e0e0e0;
+
+        .timeline-desc p {
+            margin: 0 0 5px 0;
         }
-        body.dark .photo-area, 
-        body.dark .header-area, 
-        body.dark .section-title, 
-        body.dark .btn-container {
-            background: #0a0a0a;
+        
+        .timeline-desc ul {
+            margin: 5px 0 0 0;
+            padding-left: 18px;
         }
-        body.dark .right-column .section-body {
-            color: #bbb;
+
+        /* 深色模式按鈕 */
+        .mode-btn {
+            background: #809f98;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
-        body.dark .profile-pic {
-            border-color: #2c2c2c;
-        }
-        body.dark .header-area {
-            border-bottom-color: #444;
-        }
-        body.dark .header-area h1 {
-            color: #61baf2;
-        }
+
+        /* 深色模式樣式 */
+        body.dark { background: #1a1a1a; }
+        body.dark .resume-wrapper { background: #242424; }
+        body.dark .profile-header { background: #1f1f1f; color: #eee; }
+        body.dark .right-column { color: #ccc; }
+        body.dark .section-content { color: #bbb; }
+        body.dark .timeline-desc h4 { color: #eee; }
     </style>
 </head>
 
 <body>
+    <button class="mode-btn" onclick="toggleMode()">切換深色模式</button>
 
     <div class="resume-wrapper">
         
         <div class="left-column">
-            <div class="photo-area">
+            <div class="profile-header">
                 <img src="images/photo1.jpg" alt="個人照片" class="profile-pic">
+                <h1>楊芮渼</h1>
+                <div class="job-title">聽語治療學系學生</div>
             </div>
-            
+
             <div class="left-content">
-                <div class="section-title">聯絡方式</div>
-                <div class="section-body">
-                    <p>Email：s1904950707@gmail.com</p>
-                </div>
+                <div class="left-title">職業技能</div>
                 
-                <div class="section-title">技能</div>
-                <div class="section-body">
-                    <ul>
-                        <li>溝通與表達能力</li>
-                        <li>英文簡報</li>
-                        <li>團隊合作</li>
-                        <li>基礎程式設計 (HTML / JavaScript)</li>
-                    </ul>
+                <div class="skill-item">
+                    <div class="skill-name">溝通與表達能力</div>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">英文簡報</div>
+                    <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">團隊合作</div>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">基礎程式設計 (HTML/JS)</div>
+                    <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+                </div>
+
+                <div class="left-title">語言能力</div>
+                <div class="skill-item">
+                    <div class="skill-name">中文 (母語)</div>
+                    <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">英文</div>
+                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                </div>
+
+                <div class="left-title">興趣愛好</div>
+                <div class="hobbies">
+                    <span>📚 閱讀</span>
+                    <span>🍳 烹飪</span>
+                    <span>🏃 運動</span>
+                    <span>🎧 聽音樂</span>
                 </div>
             </div>
         </div>
 
         <div class="right-column">
             
-            <div class="btn-container">
-                <button onclick="toggleMode()">切換深色模式</button>
+            <div class="contact-top">
+                <div class="contact-item">✉️ 郵箱: s1904950707@gmail.com</div>
             </div>
-            
-            <div class="header-area">
-                <h1>楊芮渼</h1>
-                <p>亞洲大學學生 | 學號：114018031</p>
-            </div>
-            
-            <div class="right-content">
-                <div class="section-title">個人簡介</div>
-                <div class="section-body">
-                    <p>我是亞洲大學的學生，目前就讀聽力暨語言治療學系一年級，對語言溝通與復健領域具有興趣，希望未來能運用專業知識，幫助有聽力，語言與溝通，吞嚥困難方面的人提升生活品質。</p>
-                </div>
 
-                <div class="section-title">學歷</div>
-                <div class="section-body">
+            <div class="right-section-title"><span>自我評價</span></div>
+            <div class="section-content">
+                我是亞洲大學的學生，目前就讀聽力暨語言治療學系一年級，對語言溝通與復健領域具有濃厚興趣。具備良好的溝通表達能力與團隊精神，期望未來能運用專業知識，幫助有聽力、語言溝通及吞嚥困難方面的人提升生活品質。
+            </div>
+
+            <div class="right-section-title"><span>教育背景</span></div>
+            <div class="section-content timeline-item">
+                <div class="timeline-time">2025.09 - 至今</div>
+                <div class="timeline-desc">
+                    <h4>亞洲大學 (Asia University)</h4>
+                    <p>聽力暨語言治療學系 (學號：114018031)</p>
+                </div>
+            </div>
+
+            <div class="right-section-title"><span>實踐經歷</span></div>
+            <div class="section-content timeline-item">
+                <div class="timeline-time">2026.01</div>
+                <div class="timeline-desc">
+                    <h4>科林助聽器 (Collin Hearing Aid)</h4>
+                    <p>參訪見習生</p>
                     <ul>
-                        <li>亞洲大學 (Asia University)</li>
-                        <li>高中：XXX 高中</li>
+                        <li>實地了解聽力師的臨床實務工作與助聽器選配流程。</li>
                     </ul>
                 </div>
-
-                <div class="section-title">背景音樂</div>
-                <div class="section-body">
-                    <audio controls>
-                        <source src="mp3/兩分鐘城市清晨配樂.mp3" type="audio/mpeg">
-                    </audio>
+            </div>
+            <div class="section-content timeline-item">
+                <div class="timeline-time">2025 - 2026</div>
+                <div class="timeline-desc">
+                    <h4>志工服務</h4>
+                    <p>志工參與者</p>
+                    <ul>
+                        <li>具備志工服務經驗，佛光山蘭陽別院三好兒童冬令營隊輔。</li>
+                    </ul>
                 </div>
+            </div>
+
+            <div class="right-section-title"><span>項目經歷</span></div>
+            <div class="section-content timeline-item">
+                <div class="timeline-time">2023 - 2024</div>
+                <div class="timeline-desc">
+                    <h4> SKYSEF 物理組獲獎</h4>
+                    <p>專題研究參與者</p>
+                    <ul>
+                        <li>以英文簡報參與日本 SKYSEF (靜岡北青少年科學工程論壇) 交流。</li>
+                        <li>培養探究實作精神，並大幅提升跨文化團隊合作與英語邏輯表達能力。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="right-section-title"><span>背景音樂</span></div>
+            <div class="section-content" style="text-align: center;">
+                <audio id="bgm" loop playsinline>
+                    <source src="mp3/兩分鐘城市清晨配樂.mp3" type="audio/mpeg">
+                </audio>
+                <button id="musicBtn" onclick="toggleMusic()" style="background: #809f98; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; cursor: pointer; transition: 0.3s; letter-spacing: 1px;">
+                    🎵 播放清晨配樂
+                </button>
             </div>
 
         </div>
     </div>
 
     <script>
-        // --- JavaScript 互動區塊 ---
+        // 深色模式切換
         function toggleMode() {
             document.body.classList.toggle("dark");
         }
-    </script>
 
+        // 音樂播放控制
+        const audio = document.getElementById("bgm");
+        const musicBtn = document.getElementById("musicBtn");
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = "⏸️ 暫停清晨配樂";
+                musicBtn.style.background = "#6b724b"; // 播放時變成較深的橄欖綠
+            } else {
+                audio.pause();
+                musicBtn.innerText = "🎵 播放清晨配樂";
+                musicBtn.style.background = "#809f98"; // 暫停時恢復原本的莫蘭迪綠
+            }
+        }
+    </script>
 </body>
 </html>
