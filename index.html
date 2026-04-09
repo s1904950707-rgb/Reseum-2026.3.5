@@ -5,179 +5,271 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人履歷 - 楊芮渼</title>
 
-  <style>
-        /* --- 基礎設定 & 重設 --- */
+    <style>
+        /* --- 基礎設定 --- */
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', Arial, sans-serif;
+            background: #e9ebee; /* 外層網頁背景色 */
             margin: 0;
-            padding: 0;
-            background: #f0f2f5;
-            color: #333;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* --- 頁首 (Header) --- */
-        header {
-            background: #1e2a3b;
-            color: white;
-            text-align: center;
             padding: 40px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            transition: background-color 0.3s;
         }
 
+        /* --- 履歷主體 (雙欄彈性盒子) --- */
+        .resume-wrapper {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* ================= 左側欄位 (米色) ================= */
+        .left-column {
+            width: 35%;
+            background: #d5c7ad; /* 模仿圖片的米色 */
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s;
+        }
+
+        /* 左側照片區塊 (深藍背景) */
+        .photo-area {
+            background: #2a323f; /* 模仿圖片的深藍色 */
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 模仿圖片的六角形照片 */
         .profile-pic {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
+            width: 160px;
+            height: 160px;
             object-fit: cover;
-            border: 5px solid white;
-            margin-bottom: 15px;
+            /* 使用 CSS 繪製六角形 */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border: 6px solid #d5c7ad; /* 六角形外框 */
+            background: white;
         }
 
-        header h1 { margin: 10px 0; font-size: 32px; letter-spacing: 2px; }
-        header p { margin: 5px 0; opacity: 0.9; font-size: 16px; }
+        .left-content {
+            padding: 30px 0;
+        }
+
+        /* 左側內文 */
+        .left-column .section-body {
+            padding: 0 30px 20px 30px;
+            color: #2a323f;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .left-column ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+
+        /* ================= 右側欄位 (白色) ================= */
+        .right-column {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 頂部深色模式按鈕列 */
+        .btn-container {
+            text-align: right;
+            padding: 10px 30px;
+            background: #2a323f;
+        }
 
         button {
-            background: transparent; color: white; border: 2px solid white;
-            padding: 8px 16px; border-radius: 5px; cursor: pointer;
-            margin-top: 15px; transition: 0.3s;
-        }
-        button:hover { background: rgba(255,255,255,0.1); }
-
-        /* --- 主內容容器 (網格排版) --- */
-        .container {
-            width: 90%; max-width: 1000px;
-            margin: 20px auto 40px auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 20px; position: relative;
+            background: transparent;
+            color: #d5c7ad;
+            border: 1px solid #d5c7ad;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: 0.3s;
         }
 
-        /* 偽造左側深色背景 */
-        .container::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 280px; height: 100%; background: #1e2a3b;
-            z-index: -1; border-radius: 8px;
+        button:hover {
+            background: rgba(213, 199, 173, 0.2);
+            color: white;
         }
 
-        /* --- 區塊通用設定 --- */
-        .section {
-            background: transparent; padding: 0; margin-bottom: 0;
-            border-radius: 0; box-shadow: none;
+        /* 姓名與標題區塊 */
+        .header-area {
+            background: #2a323f;
+            color: white;
+            padding: 30px 40px 40px 40px;
+            border-bottom: 5px solid #d5c7ad; /* 姓名下方的米色裝飾線 */
         }
 
-        /* --- 透過 nth-child 重新排列版面 (不改 HTML 的魔法) --- */
-        /* 第 1 個區塊：個人簡介 (移到右側) */
-        .container .section:nth-child(1) {
-            grid-column: 2; grid-row: 1 / span 4;
-            background: white; padding: 30px; border-radius: 8px;
-            border-left: 5px solid #3498db;
-        }
-        .container .section:nth-child(1) h2 {
-            border-bottom: 2px solid #3498db; padding-bottom: 5px;
-            color: #1e2a3b; margin-bottom: 20px;
+        .header-area h1 {
+            margin: 0;
+            font-size: 36px;
+            letter-spacing: 4px;
+            color: #d5c7ad; /* 名字使用米色突出 */
+            text-transform: uppercase;
         }
 
-        /* 第 4 個區塊：聯絡方式 (移到左側最上方) */
-        .container .section:nth-child(4) { grid-column: 1; grid-row: 1; color: white; padding: 20px; }
-        
-        /* 第 2 個區塊：學歷 (移到左側中間) */
-        .container .section:nth-child(2) { grid-column: 1; grid-row: 2; color: white; padding: 20px; }
-        
-        /* 第 3 個區塊：技能 (移到左側下方) */
-        .container .section:nth-child(3) { grid-column: 1; grid-row: 3; color: white; padding: 20px; }
-
-        /* 左側側邊欄內的元素樣式 */
-        .container .section:nth-child(2) h2,
-        .container .section:nth-child(3) h2,
-        .container .section:nth-child(4) h2 {
-            color: white; border-bottom: 2px solid white;
-            padding-bottom: 10px; font-size: 22px; margin-bottom: 20px;
+        .header-area p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            letter-spacing: 1px;
+            opacity: 0.9;
         }
-        
-        .container .section:nth-child(2) ul,
-        .container .section:nth-child(3) ul { padding-left: 15px; list-style-type: disc; }
-        .container .section:nth-child(2) ul, .container .section:nth-child(3) ul,
-        .container .section:nth-child(4) p { font-size: 15px; color: rgba(255,255,255,0.8); }
 
-        /* --- 深色模式 --- */
-        .dark { background: #1e1e1e; color: #eee; }
-        .dark header { background: #111; }
-        .dark .container::before { background: #2c2c2c; }
-        
-        .dark .container .section:nth-child(1) { background: #2c2c2c; border-left: 5px solid #61baf2; }
-        .dark .container .section:nth-child(1) h2 { color: #61baf2; border-bottom: 2px solid #61baf2; }
-        
-        .dark .container .section:nth-child(2),
-        .dark .container .section:nth-child(3),
-        .dark .container .section:nth-child(4) { color: #eee; }
-        
-        .dark .container .section:nth-child(2) h2,
-        .dark .container .section:nth-child(3) h2,
-        .dark .container .section:nth-child(4) h2 { border-bottom: 2px solid #eee; }
+        /* 右側內文 */
+        .right-content {
+            padding: 40px;
+        }
+
+        .right-column .section-body {
+            margin-bottom: 30px;
+            color: #444;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .right-column ul {
+            padding-left: 20px;
+        }
+
+
+        /* ================= 共通標題設計 (斜角標籤) ================= */
+        .section-title {
+            background: #2a323f;
+            color: white;
+            display: inline-block;
+            padding: 8px 30px 8px 20px;
+            /* 模仿圖片中右側斜角的設計 */
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        /* 左側的標題需要貼齊邊緣 */
+        .left-column .section-title {
+            width: 85%;
+            padding-left: 30px;
+            margin-left: 0;
+        }
+
+
+        /* ================= 深色模式支援 ================= */
+        body.dark {
+            background: #121212;
+        }
+        body.dark .resume-wrapper {
+            background: #1e1e1e;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        body.dark .left-column {
+            background: #2c2c2c;
+        }
+        body.dark .left-column .section-body {
+            color: #e0e0e0;
+        }
+        body.dark .photo-area, 
+        body.dark .header-area, 
+        body.dark .section-title, 
+        body.dark .btn-container {
+            background: #0a0a0a;
+        }
+        body.dark .right-column .section-body {
+            color: #bbb;
+        }
+        body.dark .profile-pic {
+            border-color: #2c2c2c;
+        }
+        body.dark .header-area {
+            border-bottom-color: #444;
+        }
+        body.dark .header-area h1 {
+            color: #61baf2;
+        }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <img src="images/photo.jpg" alt="楊芮渼的個人照片" class="profile-pic">
-        <h1>楊芮渼</h1>
-        <p>亞洲大學學生</p>
-        <p>學號：114018031</p>
-        <button onclick="toggleMode()">切換深色模式</button>
-    </header>
-
-    <div class="container">
-
-        <div class="section">
-            <h2>個人簡介</h2>
-            <p>
-                我是亞洲大學的學生，目前就讀聽力暨語言治療學系一年級，對語言溝通與復健領域具有興趣，希望未來能運用專業知識，幫助有聽力，語言與溝通，吞嚥困難方面的人提升生活品質。
-            </p>
+    <div class="resume-wrapper">
+        
+        <div class="left-column">
+            <div class="photo-area">
+                <img src="images/photo.jpg" alt="個人照片" class="profile-pic">
+            </div>
+            
+            <div class="left-content">
+                <div class="section-title">聯絡方式</div>
+                <div class="section-body">
+                    <p>Email：example@email.com</p>
+                </div>
+                
+                <div class="section-title">技能</div>
+                <div class="section-body">
+                    <ul>
+                        <li>溝通與表達能力</li>
+                        <li>英文簡報</li>
+                        <li>團隊合作</li>
+                        <li>基礎程式設計 (HTML / JavaScript)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <audio controls>
- 
-  <source src="mp3/兩分鐘城市清晨配樂.mp3" type="audio/mpeg">
+        <div class="right-column">
+            
+            <div class="btn-container">
+                <button onclick="toggleMode()">切換深色模式</button>
+            </div>
+            
+            <div class="header-area">
+                <h1>楊芮渼</h1>
+                <p>亞洲大學學生 | 學號：114018031</p>
+            </div>
+            
+            <div class="right-content">
+                <div class="section-title">個人簡介</div>
+                <div class="section-body">
+                    <p>我是亞洲大學的學生，目前就讀聽力暨語言治療學系一年級，對語言溝通與復健領域具有興趣，希望未來能運用專業知識，幫助有聽力，語言與溝通，吞嚥困難方面的人提升生活品質。</p>
+                </div>
 
-</audio>
+                <div class="section-title">學歷</div>
+                <div class="section-body">
+                    <ul>
+                        <li>亞洲大學 (Asia University)</li>
+                        <li>高中：XXX 高中</li>
+                    </ul>
+                </div>
 
-        <div class="section">
-            <h2>學歷</h2>
-            <ul>
-                <li>亞洲大學 (Asia University)</li>
-                <li>高中：XXX 高中</li>
-            </ul>
+                <div class="section-title">背景音樂</div>
+                <div class="section-body">
+                    <audio controls>
+                        <source src="mp3/兩分鐘城市清晨配樂.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
         </div>
-
-        <div class="section">
-            <h2>技能</h2>
-            <ul>
-                <li>溝通與表達能力</li>
-                <li>英文簡報</li>
-                <li>團隊合作</li>
-                <li>基礎程式設計 (HTML / JavaScript)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>聯絡方式</h2>
-            <p>Email：example@email.com</p>
-            <p>電話：09xx-xxx-xxx</p>
-        </div>
-
     </div>
 
     <script>
         // --- JavaScript 互動區塊 ---
         function toggleMode() {
-            // 切換 body 的 class 來達成深色/淺色模式轉換
             document.body.classList.toggle("dark");
         }
     </script>
-
 
 </body>
 </html>
